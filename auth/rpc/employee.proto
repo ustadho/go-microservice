@@ -1,0 +1,26 @@
+syntax = "proto3";
+package auth;
+option go_package = "./auth";
+
+message EmployeeAddRequest {
+    string name = 1;
+    optional int32 address = 2;
+    optional int32 age = 3;
+    enum Department {
+        SALES = 0;
+        MARKETING = 1;
+        ADMIN = 2;
+        STAFF = 3;
+    }
+    optional Department dept = 4;
+    repeated string emails = 5;
+}
+
+message EmployeeAddResponse {
+    string name = 1;
+    int32 id =2;
+}
+
+service EmployeeService {
+    rpc AddEmployee (EmployeeAddRequest) returns (EmployeeAddResponse);
+}
